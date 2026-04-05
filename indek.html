@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Profesional | Zaskia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f6f5bb;
+            --secondary: #c6c6c6;
+            --bg-dark: #0f172a;
+            --card-bg: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at top right, #1e3c72, #0f172a);
+            color: #f8fafc;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* DASHBOARD */
+        #dashboard {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1000') no-repeat center/cover;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #cbd5e1;
+        }
+
+        .btn-enter {
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            background: var(--primary);
+            color: #000;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 20px rgba(71, 112, 104, 0.3);
+        }
+
+        .btn-enter:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(0, 255, 204, 0.5);
+            background: #fff;
+        }
+
+        /* PROFIL CONTAINER */
+        #profil {
+            display: none;
+            padding: 40px 20px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            border-radius: 15px;
+            max-width: 500px;
+            margin: 0 auto 40px auto;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav button {
+            background: transparent;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav button.active-nav {
+            background: var(--primary);
+            color: #000;
+        }
+
+        /* CONTENT CARD */
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .profile-header img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            padding: 5px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .page { display: none; }
+        .active { display: block; animation: slideUp 0.5s ease; }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            border-bottom: 2px solid rgb(10, 10, 11);
+            padding-bottom: 10px;
+        }
+
+        .info-grid p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .info-grid b { color: var(--primary); }
+
+        ul { list-style: none; }
+        li {
+            background: rgba(255,255,255,0.05);
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+
+        /* ANIMASI */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            nav { gap: 5px; flex-wrap: wrap; }
+            nav button { padding: 8px 12px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="dashboard">
+    <div class="hero-content">
+        <h1>👋 "Hi, I'm Zaskia</h1>
+        <p>Mahasiswa Teknik Informatika S1 - Universitas Jabal Ghafur</p>
+        <button class="btn-enter" onclick="masuk()">MULAI MENJELAJAH</button>
+    </div>
+</div>
+
+<div id="profil">
+    <nav id="navbar">
+        <button id="btn-biodata" class="active-nav" onclick="showPage('biodata')">Biodata</button>
+        <button id="btn-pendidikan" onclick="showPage('pendidikan')">Pendidikan</button>
+        <button id="btn-pengalaman" onclick="showPage('pengalaman')">Pengalaman</button>
+    </nav>
+
+    <div class="container">
+        <div class="profile-header">
+            <img src="c:\Users\USER\Downloads\WhatsApp Image 2026-04-05 at 09.24.57.jpeg" alt="Foto Profil">
+            <h2 style="border:none; margin-top:15px; color:#fff;">Zaskia</h2>
+        </div>
+
+        <div id="biodata" class="page active">
+            <h2>📌 Biodata</h2>
+            <div class="info-grid">
+                <p><b>Nama:</b> Zaskia</p>
+                <p><b>Npm:</b> 24105111042</p>
+                <p><b>Jenis Kelamin:</b> Perempuan</p>
+                <p><b>Email:</b> daskiagotik2@gmail.com</p>
+                <p><b>Tempat, Tanggal Lahir:</b> Sigli, 03 Maret 2006</p>
+                <p><b>Alamat:</b> Gampong Gong, Simpang Tiga</p>
+                <p><b>Status:</b> Mahasiswa Aktif S1 Teknik Informatika, Universitas Jabal Ghafur</p>
+            </div>
+        </div>
+
+        <div id="pendidikan" class="page">
+            <h2>🎓 Pendidikan</h2>
+            <ul>
+                <li><strong>SD 3 Gigieng</strong></li>
+                <li><strong>SMP Negeri 1 Simpang Tiga</strong></li>
+                <li><strong>MAN 1 Pidie</strong></li>
+                <li><strong>Universitas Jabal Ghafur</strong><br><small>Teknik Informatika (S1)</small></li>
+            </ul>
+        </div>
+
+        <div id="pengalaman" class="page">
+            <h2>🏆 Pengalaman & Prestasi</h2>
+            <ul>
+                <li>🥇 Juara 1 Cerdas Cermat</li>
+                <li>🧮 Peserta Olimpiade Matematika</li>
+                <li>🥉 Juara 3 MTQ Tilawah</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+function masuk() {
+    document.getElementById("dashboard").style.opacity = "0";
+    setTimeout(() => {
+        document.getElementById("dashboard").style.display = "none";
+        document.getElementById("profil").style.display = "block";
+        window.scrollTo(0, 0);
+    }, 500);
+}
+
+function showPage(pageId) {
+    // Sembunyikan semua halaman
+    const pages = document.querySelectorAll(".page");
+    pages.forEach(p => p.classList.remove("active"));
+    
+    // Nonaktifkan semua tombol nav
+    const navButtons = document.querySelectorAll("nav button");
+    navButtons.forEach(btn => btn.classList.remove("active-nav"));
+
+    // Tampilkan halaman yang dipilih & aktifkan tombolnya
+    document.getElementById(pageId).classList.add("active");
+    document.getElementById('btn-' + pageId).classList.add("active-nav");
+}
+</script>
+
+</body>
+</html>
